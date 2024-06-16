@@ -8,12 +8,4 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
-.homeImage {
-  background-image: url("../../images/Gemini_Generated_Image_sc5c1dsc5c1dsc5c.jpg");
-  background-repeat: no-repeat; /* Control image repetition */
-  background-size: cover; /* Control image size */
-  background-position: center; /* Control image position */
-  width: 80%;
-  height: 40rem;
-  align-items: center;
-}
+

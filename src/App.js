@@ -1,13 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './components/Home/Home';
-import { getMockProductData } from './utils/mock/productManager'; // Adjust the path as necessary
+import "./App.css";
+import Home from "./components/Home/Home";
+import NavBar from "./components/Navbar/Navbar";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  const mockProductData = getMockProductData();
   return (
     <div className="App">
-      <Home/>
+      <Router>
+        <NavBar />
+        <Home />
+      </Router>
     </div>
   );
 }
