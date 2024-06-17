@@ -40,18 +40,18 @@ function NavBar() {
                 About
               </NavLink>
             </li>
-            {/* <li className={s.navItem}>
+            <li className={s.navItem}>
               <NavLink
                 exact
-                to="/blog"
+                to="/store"
                 activeClassName={s.active}
                 className={s.navLinks}
                 onClick={handleClick}
               >
-                Blog
+                Store
               </NavLink>
             </li>
-            <li className={s.navItem}>
+            {/* <li className={s.navItem}>
               <NavLink
                 exact
                 to="/contact"
