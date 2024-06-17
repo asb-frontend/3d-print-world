@@ -17,7 +17,7 @@ function NavBar() {
             </span>
           </NavLink>
 
-          {/* <ul className={click ? `${s.navMenu} ${s.active}` : s.navMenu}>
+          <ul className={click ? `${s.navMenu} ${s.active}` : s.navMenu}>
             <li className={s.navItem}>
               <NavLink
                 exact
@@ -43,15 +43,15 @@ function NavBar() {
             <li className={s.navItem}>
               <NavLink
                 exact
-                to="/blog"
+                to="/store"
                 activeClassName={s.active}
                 className={s.navLinks}
                 onClick={handleClick}
               >
-                Blog
+                Store
               </NavLink>
             </li>
-            <li className={s.navItem}>
+            {/* <li className={s.navItem}>
               <NavLink
                 exact
                 to="/contact"
@@ -61,8 +61,8 @@ function NavBar() {
               >
                 Contact Us
               </NavLink>
-            </li>
-          </ul> */}
+            </li> */}
+          </ul>
           <div className={s.navIcon} onClick={handleClick}>
             {click ? (
               <span className={s.icon}>
