@@ -78,12 +78,12 @@
 
 .navItem:hover:after {
   width: 100%;
-  background: var(--text-color);;
+  background: var(--text-color);
 }
 
 .navItem .active {
   color: #000000;
-  border: 1px solid var(--text-color);;
+  border: 1px solid var(--text-color);
 }
 
 .navIcon {

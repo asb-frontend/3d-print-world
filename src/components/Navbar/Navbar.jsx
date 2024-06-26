@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import image1 from "../../images/Logo.jpg";
-import { CodeIcon, HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
+import { HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
+import { GlobalStateContext } from "../../GlobalState";
 
 function NavBar() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
-  const [loggedInUser, setLoggedInUser] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-
+  const { state } = useContext(GlobalStateContext);
+  console.log(state);
   return (
     <>
       <nav className={s.navbar}>
         <div className={s.navContainer}>
-          <NavLink exact to="/" className={s.navLogo}>
-            <img className={s.logo} src={image1} />
+          <NavLink exact="true" to="/" className={s.navLogo}>
+            <img className={s.logo} src={image1} alt={"AKPrintingLogo"} />
             <span>AK-Printing</span>
             <span className={s.icon}></span>
           </NavLink>
@@ -25,9 +23,8 @@ function NavBar() {
           <ul className={click ? `${s.navMenu} ${s.active}` : s.navMenu}>
             <li className={s.navItem}>
               <NavLink
-                exact
+                exact="true"
                 to="/"
-                activeClassName={s.active}
                 className={s.navLinks}
                 onClick={handleClick}
               >
@@ -36,9 +33,8 @@ function NavBar() {
             </li>
             <li className={s.navItem}>
               <NavLink
-                exact
+                exact="true"
                 to="/about"
-                activeClassName={s.active}
                 className={s.navLinks}
                 onClick={handleClick}
               >
@@ -47,9 +43,8 @@ function NavBar() {
             </li>
             <li className={s.navItem}>
               <NavLink
-                exact
+                exact="true"
                 to="/store"
-                activeClassName={s.active}
                 className={s.navLinks}
                 onClick={handleClick}
               >
@@ -57,13 +52,12 @@ function NavBar() {
               </NavLink>
             </li>
           </ul>
-          {!loggedInUser ? (
+          {!state.loggedInUser ? (
             <div className={s.navLoginContainer}>
               <div className={s.navLogin}>
                 <NavLink
-                  exact
+                  exact="true"
                   to="/login"
-                  activeClassName={s.active}
                   className={s.navLinks}
                   onClick={handleClick}
                 >
