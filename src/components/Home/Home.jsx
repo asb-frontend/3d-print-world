@@ -21,8 +21,8 @@ const Home = () => {
 
   useEffect(() =>{
     dispatch({ type: 'CURRENT_PAGE', payload: Pages.HOME})
-  }, []);
-  
+  }, [dispatch]);
+
   return (
     <div className={s.home}>
       <h1>Welcome to AK-PrinTing</h1>

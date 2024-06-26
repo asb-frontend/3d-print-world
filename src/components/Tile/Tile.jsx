@@ -16,10 +16,7 @@ const Tile = ({ children, title, product, onAddToCart }) => {
     if (quan <= 0) {
       console.error("Invalid quantity. Please enter a positive number.");
       return;
-    }
-  
-    const cartItem = { ...product, quan };
-  
+    }  
     // Assuming onAddToCart is a prop that dispatches an action (Redux example)
     if (onAddToCart) {
       onAddToCart();

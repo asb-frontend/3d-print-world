@@ -10,9 +10,8 @@ const Login = () => {
   const [name, setName] = useState('');
 
   useEffect(() =>{
-    console.log(`hit`)
     dispatch({ type: 'CURRENT_PAGE', payload: Pages.LOGIN})
-  }, []);
+  }, [dispatch]);
 
   async function login(email, password) {
     try {
