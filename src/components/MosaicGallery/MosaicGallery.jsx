@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import s from './MosaicGallery.module.css'; // Create and style this CSS module
 
-const MosaicGallery = ({ images, interval }) => {
+const MosaicGallery = ({ images, interval = 3000 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -30,10 +30,6 @@ const MosaicGallery = ({ images, interval }) => {
 MosaicGallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   interval: PropTypes.number,
-};
-
-MosaicGallery.defaultProps = {
-  interval: 3000, // Default interval of 3 seconds
 };
 
 export default MosaicGallery;
