@@ -10,7 +10,7 @@ const ProductList = ({ products }) => {
   return (
     <div className={s.productList}>
       {products.map((product) => (
-        <Tile key={product.id}>
+        <Tile title={product.name} product={product}>
           <Product key={product.id} product={product} />
         </Tile>
       ))}

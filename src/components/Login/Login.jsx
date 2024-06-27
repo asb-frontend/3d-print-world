@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { account, ID } from '../../utils/appwrite';
+import { account, ID, login, logout } from '../../utils/appwrite';
 import { GlobalStateContext } from '../../GlobalState';
 import { ShopperLoginStates, Pages } from '../../constants/enums/enums';
 
@@ -12,28 +12,6 @@ const Login = () => {
   useEffect(() =>{
     dispatch({ type: 'CURRENT_PAGE', payload: Pages.LOGIN})
   }, [dispatch]);
-
-  async function login(email, password) {
-    try {
-      await account.createEmailPasswordSession(email, password);
-      const user = await account.get();
-      dispatch({ type: 'SET_SHOPPER_STATE', payload: ShopperLoginStates.LOGGED_IN });
-      dispatch({ type: 'SET_LOGGED_IN_USER', payload: user });
-      dispatch({ type: 'SET_LOGGED_IN_NAME', payload: user.name})
-    } catch (error) {
-      console.error('Error logging in', error);
-    }
-  }
-
-  async function logout() {
-    try {
-      await account.deleteSession('current');
-      dispatch({ type: 'SET_SHOPPER_STATE', payload: ShopperLoginStates.LOGGED_OUT });
-      dispatch({ type: 'SET_LOGGED_IN_USER', payload: null });
-    } catch (error) {
-      console.error('Error logging out', error);
-    }
-  }
 
   return (
     <div>
@@ -49,7 +27,7 @@ const Login = () => {
         <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
 
         {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
-          <button type="button" onClick={() => login(email, password)}>
+          <button type="button" onClick={() => login(email, password, dispatch)}>
             Login
           </button>
         )}
@@ -69,7 +47,7 @@ const Login = () => {
         </button>
 
         {state.shopperState === ShopperLoginStates.LOGGED_IN && (
-          <button type="button" onClick={logout}>
+          <button type="button" onClick={() => logout(dispatch)}>
             Logout
           </button>
         )}

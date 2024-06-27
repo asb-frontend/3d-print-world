@@ -14,6 +14,7 @@ const GlobalStateContext = createContext({
     shopperName: null,
     loggedInUser: null,
     currentPage: Pages.HOME,
+    shoppingCart: [], // Array to hold cart items
   },
   dispatch: (action) => {},
 });
@@ -25,6 +26,7 @@ const initialState = {
   shopperName: null,
   loggedInUser: null,
   currentPage: Pages.HOME,
+  shoppingCart: [], // Array to hold cart items
 };
 
 // Define the reducer
@@ -47,7 +49,14 @@ const reducer = (state, action) => {
     case "SET_LOGGED_IN_USER":
       return { ...state, loggedInUser: action.payload };
     case "CURRENT_PAGE":
-      return { ...state, currentPage: action.payload }
+      return { ...state, currentPage: action.payload };
+    case 'ADD_TO_CART':
+      return { ...state, shoppingCart: [...state.shoppingCart, action.payload] };
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(item => item.id !== action.payload.id),
+      };
     default:
       return state;
   }

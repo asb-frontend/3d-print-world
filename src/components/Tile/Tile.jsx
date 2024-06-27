@@ -1,29 +1,16 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import { GlobalStateContext } from '../../GlobalState';
 import s from "./Tile.module.css";
 
-const Tile = ({ children, title, product, onAddToCart }) => {
+const Tile = ({ children, title, product }) => {
   const [quantity, setQuantity] = useState(1);
+  const { dispatch } = useContext(GlobalStateContext);
 
-  const handleAddToCart = (event, product) => {
-    // Optional: Prevent default behavior for button clicks (if applicable)
-    if (event) {
-      event.preventDefault();
-    }
-  
-    const quan = quantity /* Get quantity from component state or input value */;
-  
-    // Validate quantity (optional)
-    if (quan <= 0) {
-      console.error("Invalid quantity. Please enter a positive number.");
-      return;
-    }  
-    // Assuming onAddToCart is a prop that dispatches an action (Redux example)
-    if (onAddToCart) {
-      onAddToCart();
-    } else {
-      console.error("onAddToCart prop not provided. Cart functionality might be broken.");
-    }
+  const addToCart = (quanity) => {
+    console.log(quanity);
+    dispatch({ type: 'ADD_TO_CART', payload: { id: product.id, name: `${product.name} ${quanity > 1 ? 'x'+ quanity : ''}` , price: product.price * quanity, quantity: quanity } });
   };
+
 
   return (
     <>
@@ -37,7 +24,7 @@ const Tile = ({ children, title, product, onAddToCart }) => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
-          <button onClick={handleAddToCart}>Add to Cart ({quantity})</button>
+          <button onClick={() => addToCart(quantity)}>Add to Cart ({quantity})</button>
         </div>
       </div>
     </>

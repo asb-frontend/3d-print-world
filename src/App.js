@@ -4,6 +4,7 @@ import About from "./components/About/About";
 import NavBar from "./components/Navbar/Navbar";
 import Store from "./components/Store/Store";
 import Login from "./components/Login/Login"
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Client } from 'appwrite';
 
@@ -23,6 +24,7 @@ client
             <Route path="/about" element={<About/>} />
             <Route path="/store" element={<Store/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/shoppingCart" element={<ShoppingCart/>} />
           </Routes>
       </Router>
     </div>

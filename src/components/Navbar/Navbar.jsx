@@ -1,15 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import image1 from "../../images/Logo.jpg";
 import { HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import { GlobalStateContext } from "../../GlobalState";
+import { CiShoppingCart } from "react-icons/ci";
+import { logout } from "../../utils/appwrite";
 
 function NavBar() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
-  const { state } = useContext(GlobalStateContext);
-  console.log(state);
+  const { state, dispatch } = useContext(GlobalStateContext);
+  useEffect(() => {
+    console.log(state); // This will log state once per render cycle
+  }, [state]); // Empty dependency array ensures it runs only once after mount
+
   return (
     <>
       <nav className={s.navbar}>
@@ -66,9 +71,32 @@ function NavBar() {
               </div>
             </div>
           ) : (
-            <></>
+            <div className={s.navLoginContainer}>
+              <div
+                className={s.navCart}
+                onClick={() => {
+                  //TODO route to shopping cart page
+                }}
+              >
+                <NavLink
+                  exact="true"
+                  to="/shoppingCart"
+                  className={s.navLinks}
+                  onClick={handleClick}
+                >
+                <CiShoppingCart style={{ fontSize: '1.8rem' }}/>
+                </NavLink>
+              </div>
+              <div
+                className={s.navLogin}
+                onClick={() => {
+                  logout(dispatch);
+                }}
+              >
+                Logout
+              </div>
+            </div>
           )}
-
           <div className={s.navIcon} onClick={handleClick}>
             {click ? (
               <span className={s.icon}>
