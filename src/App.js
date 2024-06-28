@@ -3,29 +3,31 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import NavBar from "./components/Navbar/Navbar";
 import Store from "./components/Store/Store";
-import Login from "./components/Login/Login"
+import Login from "./components/Login/Login";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Client } from 'appwrite';
+import { Client } from "appwrite";
 
 function App() {
   const client = new Client();
 
-client
-    .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('667375240009c7efa89e');
+  client
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject("667375240009c7efa89e");
 
   return (
     <div className="App">
       <Router>
-        <NavBar/>
+        <div className="content">
+          <NavBar className="navBar" />
           <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/store" element={<Store/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/shoppingCart" element={<ShoppingCart/>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/shoppingCart" element={<ShoppingCart />} />
           </Routes>
+        </div>
       </Router>
     </div>
   );

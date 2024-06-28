@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
 import image1 from "../../images/Logo.jpg";
-import { HamburgetMenuClose, HamburgetMenuOpen } from "./Icons";
 import { GlobalStateContext } from "../../GlobalState";
 import { CiShoppingCart } from "react-icons/ci";
 import { logout } from "../../utils/appwrite";
+import { FaHome, FaPlug, FaShoppingCart } from "react-icons/fa";
 
 function NavBar() {
   const [click, setClick] = useState(false);
@@ -21,7 +21,7 @@ function NavBar() {
         <div className={s.navContainer}>
           <NavLink exact="true" to="/" className={s.navLogo}>
             <img className={s.logo} src={image1} alt={"AKPrintingLogo"} />
-            <span>AK-Printing</span>
+            <span></span>
             <span className={s.icon}></span>
           </NavLink>
 
@@ -33,17 +33,7 @@ function NavBar() {
                 className={s.navLinks}
                 onClick={handleClick}
               >
-                Home
-              </NavLink>
-            </li>
-            <li className={s.navItem}>
-              <NavLink
-                exact="true"
-                to="/about"
-                className={s.navLinks}
-                onClick={handleClick}
-              >
-                About
+                <FaHome />
               </NavLink>
             </li>
             <li className={s.navItem}>
@@ -53,7 +43,17 @@ function NavBar() {
                 className={s.navLinks}
                 onClick={handleClick}
               >
-                Store
+                <FaShoppingCart />
+              </NavLink>
+            </li>
+            <li className={s.navItem}>
+              <NavLink
+                exact="true"
+                to="/about"
+                className={s.navLinks}
+                onClick={handleClick}
+              >
+                <FaPlug />
               </NavLink>
             </li>
           </ul>
@@ -84,7 +84,7 @@ function NavBar() {
                   className={s.navLinks}
                   onClick={handleClick}
                 >
-                <CiShoppingCart style={{ fontSize: '1.8rem' }}/>
+                  <CiShoppingCart style={{ fontSize: "1.8rem" }} />
                 </NavLink>
               </div>
               <div
@@ -97,17 +97,6 @@ function NavBar() {
               </div>
             </div>
           )}
-          <div className={s.navIcon} onClick={handleClick}>
-            {click ? (
-              <span className={s.icon}>
-                <HamburgetMenuOpen />
-              </span>
-            ) : (
-              <span className={s.icon}>
-                <HamburgetMenuClose />
-              </span>
-            )}
-          </div>
         </div>
       </nav>
     </>

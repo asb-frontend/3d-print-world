@@ -2,4 +2,9 @@
   text-align: center;
   background-color: rgb(212, 208, 202);
   height: 100vh;
+
+  .content{
+    display: flex;
+    flex-direction: row;
+  }
 }
