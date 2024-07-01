@@ -8,6 +8,7 @@ import {
 // Create a context
 const GlobalStateContext = createContext({
   state: {
+    navState: false,
     shoppingCartItemCount: 0,
     shopperLogin: ShopperLoginStates.LOGGED_OUT,
     shopperState: ShopperProgressStates.BROWSING,
@@ -20,6 +21,7 @@ const GlobalStateContext = createContext({
 });
 
 const initialState = {
+  navState: true,
   shoppingCartItemCount: 0,
   shopperLogin: ShopperLoginStates.LOGGED_OUT,
   shopperState: ShopperProgressStates.BROWSING,
@@ -32,6 +34,11 @@ const initialState = {
 // Define the reducer
 const reducer = (state, action) => {
   switch (action.type) {
+    case "TOGGLE_NAV":
+      return{
+        ...state,
+        navState: !state.navState
+      }
     case "INCREMENT_CART":
       return {
         ...state,

@@ -1,5 +1,17 @@
+@import "./styles/color.module.css";
+
+
 .App {
   text-align: center;
-  background-color: rgb(212, 208, 202);
   height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+
+  .content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainContent{
+    margin-top: 80px;
+  }
 }
