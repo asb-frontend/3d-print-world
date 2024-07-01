@@ -1,0 +1,4 @@
+.nlContainer{
+    display: flex;
+    flex-direction: row;
+}

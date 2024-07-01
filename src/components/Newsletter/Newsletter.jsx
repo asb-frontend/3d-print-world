@@ -1,10 +1,14 @@
 import React from 'react';
+import s from './Newsletter.module.css'
 
 const Newsletter = () => {
 
 
   return (
-    <div>Hi I'm the Newsletter Page</div>
+    <div className={s.nlContainer}>
+      <div className={s.nlInput}></div>
+      <div className={s.nlVideos}></div>
+    </div>
   );
 };
 
