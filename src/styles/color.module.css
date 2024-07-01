@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #b47a33;
-    --secondary-color: #f6c139;
+    --primary-color: #f5a623;
+    --secondary-color: #f76b1c;
     --accent-color: #aaaaaa;
-    --background-color: #fb757585;
+    --background-color: #ff0c0c85;
     --text-color: #000000;
-    --navbar-primary-color: var(--accent-color)
+    --navbar-primary-color: rgba(0, 0, 0, 0.8);
   }

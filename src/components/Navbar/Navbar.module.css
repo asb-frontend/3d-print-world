@@ -1,16 +1,26 @@
+/* Importing your color variables */
 @import "../../styles/color.module.css";
 
 .navbar {
-  background-color: var(--navbar-primary-color);
-  height: 100vh;
   width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 20;
+  background-color: var(--navbar-primary-color);
+}
+
+.navbarActive{
+  transition: width 0.5s ease, height 0.5s ease;
+  height: 100vh;
+}
+
+.navbarClosed{
+  height: 0;
+  transition: width 0.5s ease, height 0.5s ease;
 }
 
 .navContainer {
@@ -36,7 +46,7 @@
 }
 
 .logo {
-  height: 4rem;
+  height: 80px;
 }
 
 .navLogo .icon {
@@ -45,167 +55,3 @@
   height: 3rem;
 }
 
-.navMenu {
-  max-width: 80px;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  text-align: center;
-  margin-right: 2rem;
-  justify-content: center;
-  gap: 10%;
-}
-
-.navLinks {
-  color: #000000;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  height: 100%;
-  border-bottom: 3px solid transparent;
-}
-
-.navItem {
-  line-height: 40px;
-  margin-right: 0rem;
-}
-
-.navItem:after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 0;
-  background: transparent;
-  transition: width 0.7s ease, background-color 0.5s ease;
-}
-
-.navItem:hover:after {
-  width: 100%;
-  background: var(--text-color);
-}
-
-.navItem .active {
-  color: #000000;
-  border: 1px solid var(--text-color);
-}
-
-.navIcon {
-  display: none;
-  color: #f5b921;
-}
-
-.navIcon .icon {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-}
-
-/* @media screen and (max-width: 960px) {
-  .navMenu {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-top: 1px solid #fff;
-    position: absolute;
-    top: 80px;
-    left: -110%;
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
-
-  .navMenu.active {
-    background: #1f5156;
-    left: 0px;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 1;
-  }
-
-  .navItem .active {
-    color: #ffdd40;
-    border: none;
-  }
-
-  .navLinks {
-    padding: 1.5rem;
-    width: 100%;
-    display: table;
-  }
-
-  .navLogo .icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .navIcon {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(-100%, -50%);
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    color: #ffdd40;
-  }
-} */
-.navLoginContainer{
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  text-align: right;
-  gap: 1rem;
-  align-items: center;
-}
-.navLogin{
-  line-height: 40px;
-  padding-right: 2rem;
-  text-align: right;
-  width: 50%;
-  cursor: pointer;
-}
-
-.navLogin:after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 0;
-  background: transparent;
-  transition: width 0.7s ease, background-color 0.5s ease;
-}
-
-.navLogin:hover:after {
-  width: 100%;
-  background: var(--text-color);;
-}
-
-.navLogin .active {
-  color: #000000;
-  border: 1px solid var(--text-color);;
-}
-
-.navCart{
-  line-height: 28px;
-  cursor: pointer;
-  width: 50%;
-  height: 2rem;
-}
-
-.navCart:after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 0;
-  background: transparent;
-  transition: width 0.7s ease, background-color 0.5s ease;
-}
-
-.navCart:hover:after {
-  width: 100%;
-  background: var(--text-color);;
-}
-
-.navCart .active {
-  color: #000000;
-  border: 1px solid var(--text-color);;
-}

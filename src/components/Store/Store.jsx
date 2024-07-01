@@ -8,7 +8,7 @@ const Store = () => {
     const mockProductData = getMockProductData();
 
   return (
-    <div className={s.Store}>
+    <div className={s.store}>
       <h1>Welcome to Store Page</h1>
       <ProductList products={mockProductData.products} />
     </div>

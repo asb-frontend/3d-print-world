@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalStateContext } from "../../GlobalState";
 import MosaicGallery from "../MosaicGallery/MosaicGallery"; // Adjust the import path as necessary
+import Button from "../Button/Button"
 import s from "./Home.module.css";
 import image1 from "../../images/Logo.jpg"
 import image2 from "../../images/Gemini_Generated_Image_aloxygaloxygalox.jpg"
@@ -25,7 +26,9 @@ const Home = () => {
 
   return (
     <div className={s.home}>
-      <h1>Welcome to AK-PrinTing</h1>
+      <h1 className="title">Welcome to AK-Printing</h1>
+      <p className="subtitle">Making your life easier, one print at a time.</p>
+      <Button className="button">Get Started</Button>
       <div className={s.imageContainer}>
         <MosaicGallery images={images} interval={3000} />
       </div>
