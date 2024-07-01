@@ -43,10 +43,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
-}
-
-.logo {
-  height: 80px;
+  transition: color 0.3s, transform 0.3s; /* Smooth transition for color and transform */
 }
 
 .navLogo .icon {
@@ -55,3 +52,55 @@
   height: 3rem;
 }
 
+/* Hover effects for desktop screens only */
+@media (min-width: 1024px) { /* Adjust breakpoint as needed */
+  .logo {
+    height: 80px;
+    transition: transform 0.3s, filter 0.3s; /* Smooth transition for transform and filter */
+    cursor: pointer;
+  }
+
+  .navLogo:hover {
+    color: var(--hover-color); /* Change text color on hover */
+    transform: scale(1.05); /* Slightly enlarge the container */
+  }
+
+  .logo:hover {
+    transform: scale(1.1); /* Slightly enlarge the logo on hover */
+    filter: brightness(1.2); /* Brighten the logo on hover */
+  }
+
+  .navLogo .icon:hover {
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    filter: brightness(1.2); /* Brighten the icon on hover */
+  }
+}
+
+/* Touch feedback for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  
+  .logo {
+    margin-top: 1rem;
+    height: 65px;
+    transition: transform 0.3s, filter 0.3s; /* Smooth transition for transform and filter */
+    cursor: pointer;
+  }
+
+  .navLogo:active {
+  }
+
+  .logoActive{
+    border: 2px solid var(--active-border-color); /* Add border on touch */
+    border-radius:50px;
+  }
+
+  .logo:active {
+    transform: scale(1.05); /* Slightly enlarge the logo on touch */
+    filter: brightness(1.1); /* Brighten the logo on touch */
+  }
+
+  .navLogo .icon:active {
+    transform: scale(1.05); /* Slightly enlarge the icon on touch */
+    filter: brightness(1.1); /* Brighten the icon on touch */
+  }
+}

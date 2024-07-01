@@ -14,7 +14,7 @@ function NavBar() {
     <>
       <nav className={state.navState ? `${s.navbar} ${s.navbarActive}` : `${s.navbar} ${s.navbarClosed}`}>
         <div className={s.navContainer} >
-            <img className={s.logo} src={image1} alt={"AKPrintingLogo"} onClick={() => dispatch({type:"TOGGLE_NAV"})}/>
+            <img className={state.navState ? s.logo : `${s.logo} ${s.logoActive}` } src={image1} alt={"AKPrintingLogo"} onClick={() => dispatch({type:"TOGGLE_NAV"})}/>
           <NavMenu></NavMenu>
         </div>
       </nav>
