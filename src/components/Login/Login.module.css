@@ -1,9 +1,14 @@
+@import "../../styles/color.module.css";
+
 input[type="email"] {
   margin-bottom: 10px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  text-align: center;
+  width: 100%;
+
 }
 
 input[type="password"] {
@@ -12,6 +17,9 @@ input[type="password"] {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  text-align: center;
+  width: 100%;
+
 }
 
 input[type="text"] {
@@ -20,4 +28,24 @@ input[type="text"] {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  
+}
+
+.formSheet{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+}
+
+.loginForm{
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    width: 70%;
+    padding: 2rem;
+    margin: 0 auto; /* Add margin auto to center horizontally */
+    background-color: var(--secondary-color);
 }

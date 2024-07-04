@@ -23,54 +23,56 @@ const Login = () => {
           : "Not logged in"}
       </p>
 
-      <form>
-        {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
-          <>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+      <div className={s.loginForm}>
+        <form className={s.formSheet}>
+          {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
+            <>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
 
-            <Button onClick={() => login(email, password, dispatch)}>
-              Login
+              <Button onClick={() => login(email, password, dispatch)}>
+                Login
+              </Button>
+              <br />
+
+              <Button
+                onClick={async () => {
+                  try {
+                    await account.create(ID.unique(), email, password, name);
+                    login(email, password);
+                  } catch {
+                    console.error("Error registering");
+                  }
+                }}
+              >
+                Register
+              </Button>
+            </>
+          )}
+
+          {state.shopperState === ShopperLoginStates.LOGGED_IN && (
+            <Button type="button" onClick={() => logout(dispatch)}>
+              Logout
             </Button>
-            <br />
-
-            <Button
-              onClick={async () => {
-                try {
-                  await account.create(ID.unique(), email, password, name);
-                  login(email, password);
-                } catch {
-                  console.error("Error registering");
-                }
-              }}
-            >
-              Register
-            </Button>
-          </>
-        )}
-
-        {state.shopperState === ShopperLoginStates.LOGGED_IN && (
-          <Button type="button" onClick={() => logout(dispatch)}>
-            Logout
-          </Button>
-        )}
-      </form>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
