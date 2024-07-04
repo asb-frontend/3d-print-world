@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaShoppingCart, FaPlug } from "react-icons/fa";
-import { CiShoppingCart } from "react-icons/ci";
+import { FaHome, FaShoppingBasket, FaShoppingCart, FaPlug, FaAddressCard  } from "react-icons/fa";
+import { CiShoppingCart  } from "react-icons/ci";
 import { GlobalStateContext } from "../../../GlobalState";
-import { logout } from "../../../utils/appwrite";
 import s from "./NavMenu.module.css"; // Adjust the import path
 
 const NavMenu = () => {
@@ -18,7 +17,7 @@ const NavMenu = () => {
         </li>
         <li className={s.navItem}>
           <NavLink exact="true" to="/store" className={s.navLinks}>
-            <FaShoppingCart />
+            <FaShoppingBasket  />
           </NavLink>
         </li>
         <li className={s.navItem}>
@@ -29,20 +28,20 @@ const NavMenu = () => {
       </ul>
       {!state.loggedInUser ? (
         <div className={s.navLoginContainer}>
-          <div className={s.navLogin}>
+          <div className={s.navItem}>
             <NavLink
               exact="true"
               to="/login"
               className={s.navLinks}
             >
-              Login
+              <FaAddressCard />
             </NavLink>
           </div>
         </div>
       ) : (
         <div className={s.navLoginContainer}>
           <div
-            className={s.navCart}
+            className={s.navItem}
             onClick={() => {
               /* TODO: route to shopping cart page */
             }}
@@ -52,16 +51,17 @@ const NavMenu = () => {
               to="/shoppingCart"
               className={s.navLinks}
             >
-              <CiShoppingCart style={{ fontSize: "1.8rem" }} />
+              <FaShoppingCart />
             </NavLink>
           </div>
-          <div
-            className={s.navLogin}
-            onClick={() => {
-              logout(dispatch);
-            }}
-          >
-            Logout
+          <div className={s.navItem}>
+            <NavLink
+              exact="true"
+              to="/login"
+              className={s.navLinks}
+            >
+              <FaAddressCard />
+            </NavLink>
           </div>
         </div>
       )}

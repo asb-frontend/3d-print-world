@@ -1,5 +1,24 @@
-.tile{
-    width: 50%;
-    border: 2px solid black;
-    margin: 1rem;
-}
+@import "../../styles/color.module.css";
+
+
+.tile {
+    /* Existing styles */
+    width: 200px;
+    height: fit-content;
+    background-color: var(--background-color); /* Assuming white background */
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners, optional */
+  
+    /* New styles for border and shadow */
+    border: 2px solid #ccc; /* Light grey border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and transform */
+    color: var(--text-color);
+  }
+  
+  /* Optional: Add a hover effect to enhance the pop effect */
+  .tile:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    transform: translateY(-5px); /* Slight upward movement on hover */
+  }

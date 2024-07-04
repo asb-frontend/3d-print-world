@@ -14,6 +14,18 @@ export const getMockProductData  = () => {
                 name: "Plague Marine Helmets",
                 price: 19.99,
                 image: '',
+            },
+            {
+                id: 3,
+                name: "White Scar Marine Shoulders",
+                price: 19.99,
+                image: '',
+            },
+            {
+                id: 4,
+                name: "White Scar Marine Helmets",
+                price: 19.99,
+                image: '',
             }
         ]
     }

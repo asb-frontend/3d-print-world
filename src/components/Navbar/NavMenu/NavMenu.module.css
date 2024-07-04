@@ -154,22 +154,5 @@
     height: 2rem;
   }
   
-  .navCart:after {
-    content: "";
-    display: block;
-    height: 3px;
-    width: 0;
-    background: transparent;
-    transition: width 0.7s ease, background-color 0.5s ease;
-  }
   
-  .navCart:hover:after {
-    width: 100%;
-    background: var(--text-color);
-  }
-  
-  .navCart .active {
-    color: #000000;
-    border: 1px solid var(--text-color);
-  }
   

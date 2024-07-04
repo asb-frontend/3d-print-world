@@ -52,6 +52,12 @@
   height: 3rem;
 }
 
+.logo {
+  height: 6vh;
+  transition: transform 0.3s, filter 0.3s; /* Smooth transition for transform and filter */
+  cursor: pointer;
+}
+
 /* Hover effects for desktop screens only */
 @media (min-width: 1024px) { /* Adjust breakpoint as needed */
   .logo {

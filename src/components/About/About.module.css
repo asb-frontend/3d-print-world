@@ -1,15 +1,12 @@
+.about{
+    display: flex;
+    flex-direction: column;
+}
+
 .aboutSection{
-    height:15rem;
-}
-.aboutSectionA{
-    height:15rem;
-    background-color: cyan;
-}
-.aboutSectionB{
-    height:15rem;
-    background-color: green;
-}
-.aboutSectionC{
-    height:15rem;
-    background-color: gray;
+    min-height: 33vh;
+    height: 33%;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem;
+    margin: 0 2rem
 }

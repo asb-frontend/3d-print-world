@@ -1,10 +1,11 @@
 import React from 'react';
+import Calendar from '../Calendar/Calendar';
 
 const Process = () => {
 
 
   return (
-    <div>Hi I'm the Process Page</div>
+    <div><Calendar/></div>
   );
 };
 
