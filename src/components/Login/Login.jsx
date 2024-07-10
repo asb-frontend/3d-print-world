@@ -35,7 +35,6 @@ const Login = () => {
         setJoinedDate(getJoinedDate(state.loggedInUser?.$createdAt));
         setPhone(getPhoneNum(state.loggedInUser?.phone));
         setAddress(await getAddresses(state.loggedInUser.$id));
-        console.log(await getAddresses(state.loggedInUser.$id))
       }
     };
     fetchData();

@@ -4,11 +4,12 @@ import image1 from "../../images/Logo.jpg";
 import { GlobalStateContext } from "../../GlobalState";
 import NavMenu from "./NavMenu/NavMenu";
 
+
 function NavBar() {
   const { state, dispatch } = useContext(GlobalStateContext);
   useEffect(() => {
-    console.log(state); // This will log state once per render cycle
-  }, [state]); // Empty dependency array ensures it runs only once after mount
+    console.log(state); 
+  }, [state]); 
 
   return (
     <>
