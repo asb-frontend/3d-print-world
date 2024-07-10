@@ -1,7 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import { account, ID, login, logout } from "../../utils/appwrite";
+import {
+  login,
+  logout,
+  OAuth2Fb,
+  OAuth2Google,
+} from "../../utils/appwrite/appwrite";
+import { getInitials, getJoinedDate, getPhoneNum } from "../../utils/utils";
 import { GlobalStateContext } from "../../GlobalState";
 import { ShopperLoginStates, Pages } from "../../constants/enums/enums";
+import { NavLink } from "react-router-dom";
+import { FaMailBulk, FaPhone, FaCalendarAlt } from "react-icons/fa";
 import Button from "../Button/Button";
 import s from "./Login.module.css";
 
@@ -10,10 +18,21 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [initials, setInitials] = useState("");
+  const [joinedDate, setJoinedDate] = useState("");
+  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     dispatch({ type: "CURRENT_PAGE", payload: Pages.LOGIN });
   }, [dispatch]);
+
+  useEffect(() => {
+    if (state.shopperState === ShopperLoginStates.LOGGED_IN) {
+      setInitials(getInitials(state.loggedInUser?.name));
+      setJoinedDate(getJoinedDate(state.loggedInUser?.$createdAt));
+      setPhone(getPhoneNum(state.loggedInUser?.phone));
+    }
+  }, [state.shopperState, state.loggedInUser?.name]);
 
   return (
     <div>
@@ -23,9 +42,9 @@ const Login = () => {
           : "Not logged in"}
       </p>
 
-      <div className={s.loginForm}>
-        <form className={s.formSheet}>
-          {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
+      {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
+        <div className={s.loginForm}>
+          <form className={s.formSheet}>
             <>
               <input
                 type="email"
@@ -50,29 +69,55 @@ const Login = () => {
                 Login
               </Button>
               <br />
-
-              <Button
-                onClick={async () => {
-                  try {
-                    await account.create(ID.unique(), email, password, name);
-                    login(email, password);
-                  } catch {
-                    console.error("Error registering");
-                  }
-                }}
-              >
-                Register
-              </Button>
+              <Button onClick={() => OAuth2Fb()}>Facebook</Button>
+              <br />
+              <Button onClick={() => OAuth2Google()}>Google</Button>
+              <br />
+              <div>
+                <div>New User? Sign up here:</div>
+                <NavLink exact="true" to="/register" className={s.navLinks}>
+                  Register
+                </NavLink>
+              </div>
             </>
-          )}
+          </form>
+        </div>
+      )}
 
-          {state.shopperState === ShopperLoginStates.LOGGED_IN && (
-            <Button type="button" onClick={() => logout(dispatch)}>
-              Logout
-            </Button>
-          )}
-        </form>
-      </div>
+      {state.shopperState === ShopperLoginStates.LOGGED_IN && (
+        <div className={s.loginProfile}>
+          <div className={s.profileHeader}>
+            <div className={s.profileCircle}>{initials}</div>
+            <div className={s.profileName}>{state.loggedInUser?.name}</div>
+          </div>
+
+          <div className={s.personalData}>
+            <div className={s.profileSection}>
+              <div className={s.iconRow}>
+                <FaMailBulk className={s.icon} /> Email:
+              </div>
+              <div>{state.loggedInUser?.email}</div>
+            </div>
+            <div className={s.profileSection}>
+              <div className={s.iconRow}>
+                <FaPhone className={s.icon} /> Phone:
+              </div>
+              <div>{phone}</div>
+            </div>
+            <div className={s.profileSection}>
+              <div className={s.iconRow}>
+                <FaCalendarAlt className={s.icon} /> Joined On:
+              </div>
+              <div>{joinedDate}</div>
+            </div>
+          </div>
+          <div></div>
+
+          <Button className={s.logoutButton} type="button" onClick={() => logout(dispatch)}>
+            Logout
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

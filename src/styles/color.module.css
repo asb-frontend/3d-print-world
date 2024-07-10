@@ -2,8 +2,11 @@
     --primary-color: #f5a623;
     --secondary-color: #f76b1c;
     --accent-color: #aaaaaa;
-    --background-color: #ff0c0c85;
+    --background-color: #ff0c0c;
+    --background-secondary: #319bc3;
     --text-color: #000000;
     --navbar-primary-color: rgba(0, 0, 0, 0.8);
     --active-border-color: #003af7;
+    --white: #faf1f1;
+    --border-radius: 12px;
   }

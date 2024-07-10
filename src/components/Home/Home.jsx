@@ -26,9 +26,9 @@ const Home = () => {
 
   return (
     <div className={s.home}>
-      <h1 className="title">Welcome to AK-Printing</h1>
-      <p className="subtitle">Making your life easier, one print at a time.</p>
-      <Button className="button">Get Started</Button>
+      <h1 className={s.title}>Welcome to AK-Printing</h1>
+      <p className={s.subtitle}>Making your life easier, one print at a time.</p>
+      <Button className={s.homeButton}>Get Started</Button>
       <div className={s.imageContainer}>
         <MosaicGallery images={images} interval={3000} />
       </div>

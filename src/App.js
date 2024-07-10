@@ -5,6 +5,8 @@ import NavBar from "./components/Navbar/Navbar";
 import Store from "./components/Store/Store";
 import Login from "./components/Login/Login";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import Error from "./components/Error/Error"
+import Register from "./components/Register/Register"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Client } from "appwrite";
 
@@ -26,6 +28,8 @@ function App() {
             <Route path="/store" element={<Store />} />
             <Route path="/login" element={<Login />} />
             <Route path="/shoppingCart" element={<ShoppingCart />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/error" element={<Error />} />
           </Routes></div>
         </div>
       </Router>
