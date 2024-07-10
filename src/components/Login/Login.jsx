@@ -18,7 +18,6 @@ const Login = () => {
   const { state, dispatch } = useContext(GlobalStateContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [initials, setInitials] = useState("");
   const [joinedDate, setJoinedDate] = useState("");
   const [phone, setPhone] = useState("");
@@ -38,7 +37,7 @@ const Login = () => {
       }
     };
     fetchData();
-  }, [state.shopperState, state.loggedInUser?.name]);
+  }, [state]);
 
   return (
     <div>
@@ -64,13 +63,6 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-
               <Button onClick={() => login(email, password, dispatch)}>
                 Login
               </Button>
@@ -114,11 +106,15 @@ const Login = () => {
               <div className={s.iconRow}>
                 <FaCalendarAlt className={s.icon} /> Addresses:
               </div>
-              <div>{address.map((o) => {
-                return(
-                  <div>{`${o.address} , ${o.city} , ${o.zip}`}</div>
-                )
-              })}</div>
+              <div>
+                {address.map((o) => {
+                  return (
+                    <div key={o.$id}>
+                      - {`${o.address} , ${o.city} , ${o.zip}`}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className={s.profileSection}>
               <div className={s.iconRow}>
@@ -127,15 +123,13 @@ const Login = () => {
               <div>{joinedDate}</div>
             </div>
           </div>
-          <div></div>
-
-          <Button
-            className={s.logoutButton}
-            type="button"
-            onClick={() => logout(dispatch)}
-          >
-            Logout
-          </Button>
+            <Button
+              className={s.logoutButton}
+              type="button"
+              onClick={() => logout(dispatch)}
+            >
+              Logout
+            </Button>
         </div>
       )}
     </div>

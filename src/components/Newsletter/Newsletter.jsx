@@ -11,15 +11,6 @@ const Newsletter = ({ userEmail }) => {
     }
   }, [userEmail]);
 
-  const handleSubmit = () => {
-    if (email) {
-      console.log(`Submitting email: ${email}`);
-      // Replace with the actual email submission logic
-    } else {
-      console.log("Email field is empty");
-    }
-  };
-
   return (
     <div className={s.nlContainer}>
       <div className={s.nlInput}>

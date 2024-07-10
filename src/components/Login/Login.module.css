@@ -91,4 +91,6 @@
 
 .logoutButton{
   width: 80%;
+  margin-bottom: 2rem;
+  background-color: var(--background-color);
 }

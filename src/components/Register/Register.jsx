@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import s from "./Register.module.css";
 
 const Register = () => {
-  const { state, dispatch } = useContext(GlobalStateContext);
+  const { dispatch } = useContext(GlobalStateContext);
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
