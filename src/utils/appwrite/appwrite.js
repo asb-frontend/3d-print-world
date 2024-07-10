@@ -1,4 +1,4 @@
-import { Client, Account } from "appwrite";
+import { Client, Account, Query, Databases } from "appwrite";
 import { ShopperLoginStates } from "../../constants/enums/enums";
 
 export const client = new Client();
@@ -6,6 +6,8 @@ export const client = new Client();
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
   .setProject("667375240009c7efa89e");
+
+const databases = new Databases(client);
 
 export const account = new Account(client);
 export { ID } from "appwrite";
@@ -45,7 +47,7 @@ export async function create(userId, email, password, name, phone, dispatch) {
 
 export async function login(email, password, dispatch) {
   if (account) {
-    await logout();
+    await logout(dispatch);
   }
   try {
     await account.createEmailPasswordSession(email, password);
@@ -85,4 +87,14 @@ export function OAuth2Google(e) {
   } catch {
     console.error(e.message);
   }
+}
+
+export async function getAddresses(id) {
+  
+    const response = await databases.listDocuments(
+      "668dedff00230fe387bc",
+      "668e1db300171ba35d86",
+      [Query.equal("userId", id)]
+    );
+    return response.documents;
 }

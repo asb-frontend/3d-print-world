@@ -6,6 +6,7 @@ import {
   OAuth2Google,
 } from "../../utils/appwrite/appwrite";
 import { getInitials, getJoinedDate, getPhoneNum } from "../../utils/utils";
+import { getAddresses } from "../../utils/appwrite/appwrite";
 import { GlobalStateContext } from "../../GlobalState";
 import { ShopperLoginStates, Pages } from "../../constants/enums/enums";
 import { NavLink } from "react-router-dom";
@@ -21,17 +22,23 @@ const Login = () => {
   const [initials, setInitials] = useState("");
   const [joinedDate, setJoinedDate] = useState("");
   const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState([]);
 
   useEffect(() => {
     dispatch({ type: "CURRENT_PAGE", payload: Pages.LOGIN });
   }, [dispatch]);
 
   useEffect(() => {
-    if (state.shopperState === ShopperLoginStates.LOGGED_IN) {
-      setInitials(getInitials(state.loggedInUser?.name));
-      setJoinedDate(getJoinedDate(state.loggedInUser?.$createdAt));
-      setPhone(getPhoneNum(state.loggedInUser?.phone));
-    }
+    const fetchData = async () => {
+      if (state.shopperState === ShopperLoginStates.LOGGED_IN) {
+        setInitials(getInitials(state.loggedInUser?.name));
+        setJoinedDate(getJoinedDate(state.loggedInUser?.$createdAt));
+        setPhone(getPhoneNum(state.loggedInUser?.phone));
+        setAddress(await getAddresses(state.loggedInUser.$id));
+        console.log(await getAddresses(state.loggedInUser.$id))
+      }
+    };
+    fetchData();
   }, [state.shopperState, state.loggedInUser?.name]);
 
   return (
@@ -106,6 +113,16 @@ const Login = () => {
             </div>
             <div className={s.profileSection}>
               <div className={s.iconRow}>
+                <FaCalendarAlt className={s.icon} /> Addresses:
+              </div>
+              <div>{address.map((o) => {
+                return(
+                  <div>{`${o.address} , ${o.city} , ${o.zip}`}</div>
+                )
+              })}</div>
+            </div>
+            <div className={s.profileSection}>
+              <div className={s.iconRow}>
                 <FaCalendarAlt className={s.icon} /> Joined On:
               </div>
               <div>{joinedDate}</div>
@@ -113,7 +130,11 @@ const Login = () => {
           </div>
           <div></div>
 
-          <Button className={s.logoutButton} type="button" onClick={() => logout(dispatch)}>
+          <Button
+            className={s.logoutButton}
+            type="button"
+            onClick={() => logout(dispatch)}
+          >
             Logout
           </Button>
         </div>
