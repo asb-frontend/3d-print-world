@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { create } from "../../utils/appwrite/appwrite";
-import { GlobalStateContext } from "../../GlobalState";
+import { GlobalStateContext } from "../../context/GlobalState";
 import Button from "../Button/Button";
 import s from "./Register.module.css";
 

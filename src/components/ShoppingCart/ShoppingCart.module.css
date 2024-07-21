@@ -1,0 +1,55 @@
+@import "../../styles/color.module.css";
+
+.shoppingCartContainer {
+    padding: 2rem;
+    background-color: var(--white);
+    height: 100%;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+    margin-right: 80px;
+}
+
+.shoppingCartItemList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.shoppingCartItem {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: row;
+  background: var(--accent-color);
+  gap: 2rem;
+  justify-content: space-between;
+}
+.shoppingCartItemLeftSide{
+    display: flex;
+    flex-direction: row;
+    /* Optionally, you can add gap between left sections */
+    gap: 10px; /* Adjust as needed */
+}
+.shoppingCartItemImage {
+  height: 150px; /* Set the fixed height */
+  width: 150px; /* Set the fixed width */
+  border-radius: var(
+    --border-radius
+  ); /* Assuming --border-radius is defined elsewhere */
+  background-repeat: no-repeat;
+  background-size: cover; /* Adjusted to cover the container */
+}
+
+.shoppingCartItemTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.shoppingCartItemManagement{
+    display: flex;
+    flex-direction: row;
+    /* Optionally, you can add gap between left sections */
+    gap: 10px; /* Adjust as needed */
+}

@@ -7,10 +7,11 @@ import {
 } from "../../utils/appwrite/appwrite";
 import { getInitials, getJoinedDate, getPhoneNum } from "../../utils/utils";
 import { getAddresses } from "../../utils/appwrite/appwrite";
-import { GlobalStateContext } from "../../GlobalState";
+import { GlobalStateContext } from "../../context/GlobalState";
 import { ShopperLoginStates, Pages } from "../../constants/enums/enums";
 import { NavLink } from "react-router-dom";
 import { FaMailBulk, FaPhone, FaCalendarAlt } from "react-icons/fa";
+import LoginForm from "../LoginForm/LoginForm";
 import Button from "../Button/Button";
 import s from "./Login.module.css";
 
@@ -37,7 +38,13 @@ const Login = () => {
       }
     };
     fetchData();
-  }, [state]);
+  }, [
+    state.loggedInUser?.name,
+    state.loggedInUser?.$createdAt,
+    state.loggedInUser?.phone,
+    state.loggedInUser?.$id,
+    state.shopperState,
+  ]);
 
   return (
     <div>
@@ -49,7 +56,8 @@ const Login = () => {
 
       {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
         <div className={s.loginForm}>
-          <form className={s.formSheet}>
+          <LoginForm></LoginForm>
+          {/* <form className={s.formSheet}>
             <>
               <input
                 type="email"
@@ -78,7 +86,7 @@ const Login = () => {
                 </NavLink>
               </div>
             </>
-          </form>
+          </form> */}
         </div>
       )}
 
@@ -123,13 +131,13 @@ const Login = () => {
               <div>{joinedDate}</div>
             </div>
           </div>
-            <Button
-              className={s.logoutButton}
-              type="button"
-              onClick={() => logout(dispatch)}
-            >
-              Logout
-            </Button>
+          <Button
+            className={s.logoutButton}
+            type="button"
+            onClick={() => logout(dispatch)}
+          >
+            Logout
+          </Button>
         </div>
       )}
     </div>

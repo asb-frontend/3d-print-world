@@ -1,0 +1,23 @@
+
+/*  */
+.processContainer{
+  overflow: hidden;
+  width: 100vw;
+  overflow-x: hidden;
+}
+.imageTrack {
+    display: flex;
+    gap: 4vmin;
+    transform: translate(0%, 0%); 
+    user-select: none; /* -- Prevent image highlighting -- */
+  }
+  
+  .imageTrack > .image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+  }
+  
+  
+ 

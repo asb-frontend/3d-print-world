@@ -8,9 +8,10 @@ body {
   sans-serif;
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.4px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #333333;
 }
 
 code {

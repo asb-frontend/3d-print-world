@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FaHome, FaShoppingBasket, FaShoppingCart, FaPlug, FaAddressCard  } from "react-icons/fa";
-import { GlobalStateContext } from "../../../GlobalState";
+import { GlobalStateContext } from "../../../context/GlobalState";
 import s from "./NavMenu.module.css"; // Adjust the import path
 
 const NavMenu = () => {

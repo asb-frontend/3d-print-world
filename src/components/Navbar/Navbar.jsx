@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import s from "./Navbar.module.css";
 import image1 from "../../images/Logo.jpg";
-import { GlobalStateContext } from "../../GlobalState";
+import { GlobalStateContext } from "../../context/GlobalState";
 import NavMenu from "./NavMenu/NavMenu";
 
 

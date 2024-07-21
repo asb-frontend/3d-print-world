@@ -3,7 +3,7 @@ import {
   ShopperLoginStates,
   ShopperProgressStates,
   Pages
-} from "./constants/enums/enums";
+} from "../constants/enums/enums";
 
 // Create a context
 const GlobalStateContext = createContext({
@@ -64,6 +64,23 @@ const reducer = (state, action) => {
         ...state,
         shoppingCart: state.shoppingCart.filter(item => item.id !== action.payload.id),
       };
+      case "UPDATE_ITEM_QUANTITY":
+        const { id, price, quantity  } = action.payload;
+        console.log(id, price, quantity)
+        const updatedCart = state.shoppingCart.map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                quantity,
+                price: price, // Update the price based on the new quantity
+              }
+            : item
+        );
+        console.log(updatedCart)
+        return {
+          ...state,
+          shoppingCart: updatedCart,
+        };
     default:
       return state;
   }

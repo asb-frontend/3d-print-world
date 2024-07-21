@@ -22,7 +22,7 @@ function App() {
       <Router>
         <div className="content">
           <NavBar className="navBar" />
-          <div className="mainContent" style={{marginTop: '80px'}}><Routes>
+          <div className="mainContent"><Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/store" element={<Store />} />

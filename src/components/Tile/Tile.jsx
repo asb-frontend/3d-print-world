@@ -1,5 +1,5 @@
-import React, {useContext, useState} from "react";
-import { GlobalStateContext } from '../../GlobalState';
+import React, { useContext, useState } from "react";
+import { GlobalStateContext } from "../../context/GlobalState";
 import s from "./Tile.module.css";
 
 const Tile = ({ children, title, product }) => {
@@ -8,9 +8,17 @@ const Tile = ({ children, title, product }) => {
 
   const addToCart = (quanity) => {
     console.log(quanity);
-    dispatch({ type: 'ADD_TO_CART', payload: { id: product.id, name: `${product.name} ${quanity > 1 ? 'x'+ quanity : ''}` , price: product.price * quanity, quantity: quanity } });
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id: product.id,
+        name: product.name,
+        unitPrice: product.price,
+        price: product.price * quanity,
+        quantity: quanity,
+      },
+    });
   };
-
 
   return (
     <>
@@ -24,7 +32,9 @@ const Tile = ({ children, title, product }) => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
-          <button onClick={() => addToCart(quantity)}>Add to Cart ({quantity})</button>
+          <button onClick={() => addToCart(quantity)}>
+            Add to Cart ({quantity})
+          </button>
         </div>
       </div>
     </>

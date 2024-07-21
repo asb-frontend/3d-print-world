@@ -8,13 +8,12 @@
 }
 
 .loginForm {
-  border-radius: 2px;
-  border: 1px solid #ccc;
-  width: 70%;
+
+  width: 100%;
   padding: 2rem;
   margin: 0 auto; /* Add margin auto to center horizontally */
-  background-color: var(--secondary-color);
 }
+
 .loginProfile {
   display: flex;
   flex-direction: column;
