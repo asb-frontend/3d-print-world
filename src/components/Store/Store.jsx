@@ -9,7 +9,7 @@ const Store = () => {
 
   return (
     <div className={s.store}>
-      <h1>Welcome to Store Page</h1>
+      <h1>Welcome to Store</h1>
       <ProductList products={mockProductData.products} />
     </div>
   );

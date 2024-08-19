@@ -46,6 +46,7 @@ export async function create(userId, email, password, name, phone, dispatch) {
 }
 
 export async function login(email, password, dispatch) {
+  console.log('hi')
   if (account) {
     await logout(dispatch);
   }

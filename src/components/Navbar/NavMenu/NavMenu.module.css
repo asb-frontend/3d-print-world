@@ -58,7 +58,6 @@
     display: flex;
     flex-direction: column;
     list-style: none;
-    text-align: center;
     justify-content: center;
     align-items: center;
     gap: 10%;

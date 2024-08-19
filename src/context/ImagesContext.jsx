@@ -8,11 +8,8 @@ const ImagesProvider = ({ children }) => {
   const importAllImages = () => {
     try {
       const imageDir = require.context('../images', false, /\.(jpg|png|gif)$/);
-      console.log('Image keys:', imageDir.keys()); // Log image keys to verify detection
-
       const loadedImages = imageDir.keys().map((imageKey) => {
         const image = imageDir(imageKey);
-        console.log('Loaded image:', image); // Log each loaded image
         return image;
       });
 

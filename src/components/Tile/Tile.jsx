@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import { GlobalStateContext } from "../../context/GlobalState";
+
 import s from "./Tile.module.css";
+import Modal from "../Modal/Modal";
 
 const Tile = ({ children, title, product }) => {
   const [quantity, setQuantity] = useState(1);
   const { dispatch } = useContext(GlobalStateContext);
+  const [modal, setModal] = useState(false);
 
   const addToCart = (quanity) => {
     console.log(quanity);
@@ -22,7 +25,7 @@ const Tile = ({ children, title, product }) => {
 
   return (
     <>
-      <div className={s.tile}>
+      <div className={s.tile} onClick={() => setModal(true)}>
         <div className={s.tileTitle}>{title}</div>
         <div className={s.tileContent}>{children}</div>
         <div className={s.tileButton}>
@@ -32,11 +35,12 @@ const Tile = ({ children, title, product }) => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
-          <button onClick={() => addToCart(quantity)}>
-            Add to Cart ({quantity})
-          </button>
+
         </div>
       </div>
+      <Modal show={modal} onClose={() => setModal(false)}>
+        hello
+      </Modal>
     </>
   );
 };

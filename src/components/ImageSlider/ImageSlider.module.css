@@ -21,10 +21,10 @@
   
   .imgBeforeWrap {
     overflow: hidden;
-    width: 50vw;
+    width: 100vw;
   }
   
-  .imgBeforeWrap {
+  .imgAfterWrap {
     filter: grayscale(100%);
   }
   
@@ -65,7 +65,7 @@
     }
   }
   
-  h1 {
+  .heroContentTest {
     font-size: 2.8em;
     color: #FFF;
     margin-bottom: 20px;
@@ -74,7 +74,7 @@
     z-index: 40; 
   }
   
-  .heroContent-test {
+  .heroContentTest {
     pointer-events: none;
     z-index: 40; 
   }

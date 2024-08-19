@@ -1,23 +1,48 @@
-
-/*  */
-.processContainer{
+.slider {
+  position: relative;
+  width: 100%;
   overflow: hidden;
-  width: 100vw;
-  overflow-x: hidden;
 }
-.imageTrack {
-    display: flex;
-    gap: 4vmin;
-    transform: translate(0%, 0%); 
-    user-select: none; /* -- Prevent image highlighting -- */
-  }
-  
-  .imageTrack > .image {
-    width: 40vmin;
-    height: 56vmin;
-    object-fit: cover;
-    object-position: 100% center;
-  }
-  
-  
- 
+
+.sliderContainer {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sliderWrapper {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  width: 300%; /* Adjust based on the number of visible slides */
+}
+
+.slide {
+  min-width: 33.33%; /* Adjust based on the number of visible slides */
+  box-sizing: border-box;
+}
+
+.slide .img {
+  width: 100%;
+  display: block;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.arrowLeft {
+  left: 0;
+}
+
+.arrowRight {
+  right: 0;
+}

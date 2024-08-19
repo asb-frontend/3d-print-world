@@ -7,7 +7,7 @@ export const getMockProductData  = () => {
                 id: 1,
                 name: "Plague Marine Shoulders",
                 price: 19.99,
-                image: '',
+                image: '../../images/Gemini_Generated_Image_aloxyealoxyealox.jpg',
             },
             {
                 id: 2,

@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaFacebookF, FaGoogle, FaGithub, FaLinkedin } from "react-icons/fa";
-
+import { GlobalStateContext } from "../../context/GlobalState";
+import Register from "../Register/Register";
+import { login } from "../../utils/appwrite/appwrite";
 import s from "./LoginForm.module.css"; // Import your CSS module
 
 const LoginForm = () => {
-  const [isSignInActive, setIsSignInActive] = useState(true);
+  const { dispatch } = useContext(GlobalStateContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignUpActive, setIsSignUpActive] = useState(false);
 
   const toggleForm = () => {
-    setIsSignInActive((prevState) => !prevState);
+    setIsSignUpActive((prevState) => !prevState);
   };
 
   return (
-    <div className={`${s.container} ${isSignInActive ? s.active : ""}`}>
+    <div className={`${s.container} ${isSignUpActive ? s.active : ""}`}>
       <div className={`${s.formContainer} ${s.signUp}`}>
-        <form className={s.form}>
+        <div className={s.form}>
           <h1>Create Account</h1>
           <div className={s.socialIcons}>
             <a href="#" className={s.icon}>
@@ -30,17 +36,15 @@ const LoginForm = () => {
             </a>
           </div>
           <span className={s.formText}>or use your email for registration</span>
-          <input type="text" placeholder="Name" className={s.input} />
-          <input type="email" placeholder="Email" className={s.input} />
-          <input type="password" placeholder="Password" className={s.input} />
-          <button className={s.btn}>Login</button>
-        </form>
+          <Register />
+          <button className={s.btn}>Register</button>
+        </div>
       </div>
       <div className={`${s.formContainer} ${s.signIn}`}>
-        <form className={s.form}>
+        <div className={s.form}>
           <h1>Login</h1>
           <div className={s.socialIcons}>
-          <a href="#" className={s.icon}>
+            <a href="#" className={s.icon}>
               <FaGoogle />
             </a>
             <a href="#" className={s.icon}>
@@ -54,44 +58,62 @@ const LoginForm = () => {
             </a>
           </div>
           <span className={s.formText}>or use your email and password</span>
-          <input type="email" placeholder="Email" className={s.input} />
-          <input type="password" placeholder="Password" className={s.input} />
-          <button className={s.btn}>Login</button>
+          <input
+            type="email"
+            placeholder="Email"
+            className={s.input}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className={s.input}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            className={s.btn}
+            onClick={() => {
+
+              login(email, password, dispatch);
+            }}
+          >
+            Login
+          </button>
           <a href="#" className={s.link}>
             Forget Your Password?
           </a>
-        </form>
+        </div>
       </div>
       <div className={s.toggleContainer}>
         <div className={s.toggle}>
           <div
             className={`${s.togglePanel} ${
-              isSignInActive ? s.toggleLeft : s.toggleRight
+              isSignUpActive ? s.toggleLeft : s.toggleRight
             }`}
           >
-            <h1>{isSignInActive ? "Welcome Back!" : "New Here?"}</h1>
+            <h1>{isSignUpActive ? "Welcome Back!" : "New Here?"}</h1>
             <p>
-              {isSignInActive
+              {isSignUpActive
                 ? "Login with your account to use all site features"
                 : "Register with your personal details to use all site features"}
             </p>
             <button className={s.btnHidden} onClick={toggleForm}>
-              {isSignInActive ? "Sign In" : "Sign Up"}
+              {isSignUpActive ? "Sign In" : "Sign Up"}
             </button>
           </div>
           <div
             className={`${s.togglePanel} ${
-              isSignInActive ? s.toggleRight : s.toggleLeft
+              isSignUpActive ? s.toggleRight : s.toggleLeft
             }`}
           >
-            <h1>{isSignInActive ? "New Here?" : "Welcome Back!"}</h1>
+            <h1>{isSignUpActive ? "New Here?" : "Welcome Back!"}</h1>
             <p>
-              {isSignInActive
+              {isSignUpActive
                 ? "Login with your account to use all site features"
                 : "Enter your personal details to use all site features"}
             </p>
             <button className={s.btnHidden} onClick={toggleForm}>
-              {isSignInActive ? "Sign Up" : "Sign In"}
+              {isSignUpActive ? "Sign Up" : "Sign In"}
             </button>
           </div>
         </div>

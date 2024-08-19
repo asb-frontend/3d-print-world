@@ -1,8 +1,10 @@
 @import "../../styles/color.module.css";
 .registerContainer{
-    z-index: -1;
-    padding: 4rem;
-    background-color: var(--primary-color);
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 90%;
 }
 
 .registerForm{
@@ -10,14 +12,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
 }
 
 .registerField{
     width: 100%;
-
 }
 
 .registerButton{
     width: 90%;
+}
+
+.input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
 }

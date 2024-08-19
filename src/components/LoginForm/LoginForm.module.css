@@ -6,7 +6,6 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    width: 90%;
     min-height: 800px;
 }
 
@@ -28,7 +27,7 @@
     margin: 15px 0 10px;
 }
 
-.container button{
+.container .btn, .btnHidden{
     background-color: var(--background-secondary);
     color: #fff;
     font-size: 12px;
@@ -42,12 +41,7 @@
     cursor: pointer;
 }
 
-.container button.hidden{
-    background-color: transparent;
-    border-color: #fff;
-}
-
-.container form{
+.container .form{
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -57,7 +51,7 @@
     height: 100%;
 }
 
-.container input{
+.container .input{
     background-color: #eee;
     border: none;
     margin: 8px 0;

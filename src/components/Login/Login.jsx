@@ -1,15 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import {
-  login,
   logout,
-  OAuth2Fb,
-  OAuth2Google,
 } from "../../utils/appwrite/appwrite";
 import { getInitials, getJoinedDate, getPhoneNum } from "../../utils/utils";
 import { getAddresses } from "../../utils/appwrite/appwrite";
 import { GlobalStateContext } from "../../context/GlobalState";
 import { ShopperLoginStates, Pages } from "../../constants/enums/enums";
-import { NavLink } from "react-router-dom";
 import { FaMailBulk, FaPhone, FaCalendarAlt } from "react-icons/fa";
 import LoginForm from "../LoginForm/LoginForm";
 import Button from "../Button/Button";
@@ -17,8 +13,6 @@ import s from "./Login.module.css";
 
 const Login = () => {
   const { state, dispatch } = useContext(GlobalStateContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [initials, setInitials] = useState("");
   const [joinedDate, setJoinedDate] = useState("");
   const [phone, setPhone] = useState("");
@@ -56,37 +50,7 @@ const Login = () => {
 
       {state.shopperState !== ShopperLoginStates.LOGGED_IN && (
         <div className={s.loginForm}>
-          <LoginForm></LoginForm>
-          {/* <form className={s.formSheet}>
-            <>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button onClick={() => login(email, password, dispatch)}>
-                Login
-              </Button>
-              <br />
-              <Button onClick={() => OAuth2Fb()}>Facebook</Button>
-              <br />
-              <Button onClick={() => OAuth2Google()}>Google</Button>
-              <br />
-              <div>
-                <div>New User? Sign up here:</div>
-                <NavLink exact="true" to="/register" className={s.navLinks}>
-                  Register
-                </NavLink>
-              </div>
-            </>
-          </form> */}
+          <LoginForm/>
         </div>
       )}
 
