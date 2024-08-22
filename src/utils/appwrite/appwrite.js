@@ -1,4 +1,5 @@
 import { Client, Account, Query, Databases } from "appwrite";
+import { createAccountValidation } from '../validation/validation'
 import { ShopperLoginStates } from "../../constants/enums/enums";
 
 export const client = new Client();
@@ -21,11 +22,15 @@ export async function logout(dispatch) {
     });
     dispatch({ type: "SET_LOGGED_IN_USER", payload: null });
   } catch (error) {
-    console.error("Error logging out", error);
   }
 }
+
 export async function create(userId, email, password, name, phone, dispatch) {
   try {
+    // Validate the inputs
+    createAccountValidation(userId, email, password, name, phone);
+
+    // Proceed with account creation
     await account.create(userId, email, password, name);
     await account.createEmailPasswordSession(email, password);
     const user = await account.get();
@@ -35,13 +40,15 @@ export async function create(userId, email, password, name, phone, dispatch) {
     });
     dispatch({ type: "SET_LOGGED_IN_USER", payload: user });
     dispatch({ type: "SET_LOGGED_IN_NAME", payload: user.name });
+
     const result = await account.updatePhone(
       phone, // phone
       password // password
     );
-    console.log(result);
   } catch (error) {
-    console.error(error.message);
+    // Optionally, you can dispatch an error message to the frontend here
+    dispatch({ type: "SET_ERROR_MESSAGE", payload: error.message });
+    throw new Error( error );
   }
 }
 

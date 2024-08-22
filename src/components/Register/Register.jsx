@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { create } from "../../utils/appwrite/appwrite";
-import { GlobalStateContext } from "../../context/GlobalState";
-import Button from "../Button/Button";
+import React, { useState, useEffect } from "react";
 import s from "./Register.module.css";
 
-const Register = () => {
-  const { dispatch } = useContext(GlobalStateContext);
+const Register = ({ updateFormData }) => {
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -16,8 +12,8 @@ const Register = () => {
   });
 
   useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+    updateFormData(formData); // Update parent component with form data
+  }, [formData, updateFormData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,31 +23,9 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    create(
-      formData.userId,
-      formData.email,
-      formData.password,
-      `${formData.firstName} ${formData.lastName}`,
-      formData.phoneNumber,
-      dispatch
-    );
-  };
-
   return (
     <div className={s.registerContainer}>
       <div className={s.registerForm}>
-        <div className={s.registerField}>
-          <input
-            className={s.input}
-            type="text"
-            name="userId"
-            placeholder="User Id"
-            value={formData.userId}
-            onChange={handleChange}
-            required
-          />
-        </div>
         <div className={s.registerField}>
           <input
             className={s.input}
@@ -77,17 +51,6 @@ const Register = () => {
         <div className={s.registerField}>
           <input
             className={s.input}
-            type="text"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={s.registerField}>
-          <input
-            className={s.input}
             type="email"
             name="email"
             placeholder="Email"
@@ -103,6 +66,28 @@ const Register = () => {
             name="phoneNumber"
             placeholder="Phone Number"
             value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className={s.registerField}>
+          <input
+            className={s.input}
+            type="text"
+            name="userId"
+            placeholder="User Id"
+            value={formData.userId}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className={s.registerField}>
+          <input
+            className={s.input}
+            type="text"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
             onChange={handleChange}
             required
           />

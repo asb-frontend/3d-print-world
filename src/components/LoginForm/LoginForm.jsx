@@ -2,18 +2,48 @@ import React, { useState, useContext } from "react";
 import { FaFacebookF, FaGoogle, FaGithub, FaLinkedin } from "react-icons/fa";
 import { GlobalStateContext } from "../../context/GlobalState";
 import Register from "../Register/Register";
-import { login } from "../../utils/appwrite/appwrite";
+import { create, login } from "../../utils/appwrite/appwrite";
 import s from "./LoginForm.module.css"; // Import your CSS module
 
 const LoginForm = () => {
   const { dispatch } = useContext(GlobalStateContext);
 
+  const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUpActive, setIsSignUpActive] = useState(false);
+  const [formData, setFormData] = useState({
+    userId: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    email: "",
+    phoneNumber: "",
+  });
 
   const toggleForm = () => {
     setIsSignUpActive((prevState) => !prevState);
+  };
+
+  const updateFormData = (data) => {
+    setFormData(data);
+  };
+
+  const handleSubmit = async () => {
+    setErrorMessage(null)
+    try {
+      console.log("calling create")
+      await create(
+        formData.userId,
+        formData.email,
+        formData.password,
+        `${formData.firstName} ${formData.lastName}`,
+        formData.phoneNumber,
+        dispatch
+      );
+    } catch (error) {
+      setErrorMessage(error.message); // Set the error message for display
+    }
   };
 
   return (
@@ -22,6 +52,7 @@ const LoginForm = () => {
         <div className={s.form}>
           <h1>Create Account</h1>
           <div className={s.socialIcons}>
+            {/* TODO: Populate with urls once linked */}
             <a href="#" className={s.icon}>
               <FaGoogle />
             </a>
@@ -36,8 +67,11 @@ const LoginForm = () => {
             </a>
           </div>
           <span className={s.formText}>or use your email for registration</span>
-          <Register />
-          <button className={s.btn}>Register</button>
+          <Register updateFormData={updateFormData} />
+          <button className={s.btn} onClick={handleSubmit}>
+            Register
+          </button>
+          {errorMessage && (<div>{errorMessage}</div>)}
         </div>
       </div>
       <div className={`${s.formContainer} ${s.signIn}`}>
@@ -73,7 +107,6 @@ const LoginForm = () => {
           <button
             className={s.btn}
             onClick={() => {
-
               login(email, password, dispatch);
             }}
           >
